@@ -49,6 +49,7 @@ namespace Demo_Day8_DB
             this.deleteBtn = new System.Windows.Forms.Button();
             this.stateComboBox = new System.Windows.Forms.ComboBox();
             this.customerIdCBox = new System.Windows.Forms.ComboBox();
+            this.invoicesBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // nameTxt
@@ -75,6 +76,7 @@ namespace Demo_Day8_DB
             this.customerIdTxt.ReadOnly = true;
             this.customerIdTxt.Size = new System.Drawing.Size(100, 25);
             this.customerIdTxt.TabIndex = 0;
+            this.customerIdTxt.Visible = false;
             // 
             // label1
             // 
@@ -236,11 +238,22 @@ namespace Demo_Day8_DB
             this.customerIdCBox.TabIndex = 4;
             this.customerIdCBox.SelectedIndexChanged += new System.EventHandler(this.customerIdCBox_SelectedIndexChanged);
             // 
+            // invoicesBtn
+            // 
+            this.invoicesBtn.Location = new System.Drawing.Point(265, 367);
+            this.invoicesBtn.Name = "invoicesBtn";
+            this.invoicesBtn.Size = new System.Drawing.Size(74, 25);
+            this.invoicesBtn.TabIndex = 5;
+            this.invoicesBtn.Text = "&Invoices";
+            this.invoicesBtn.UseVisualStyleBackColor = true;
+            this.invoicesBtn.Click += new System.EventHandler(this.invoicesBtn_Click);
+            // 
             // CustomerFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 404);
+            this.Controls.Add(this.invoicesBtn);
             this.Controls.Add(this.customerIdCBox);
             this.Controls.Add(this.stateComboBox);
             this.Controls.Add(this.nextBtn);
@@ -291,6 +304,7 @@ namespace Demo_Day8_DB
         private System.Windows.Forms.Button deleteBtn;        
         private System.Windows.Forms.ComboBox stateComboBox;
         private System.Windows.Forms.ComboBox customerIdCBox;
+        private System.Windows.Forms.Button invoicesBtn;
     }
 }
 
