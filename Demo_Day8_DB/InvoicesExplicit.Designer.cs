@@ -59,11 +59,12 @@ namespace Demo_Day8_DB
             this.SalesTax,
             this.InvoiceTotal});
             this.invoicesDGrid.Location = new System.Drawing.Point(12, 35);
+            this.invoicesDGrid.MultiSelect = false;
             this.invoicesDGrid.Name = "invoicesDGrid";
             this.invoicesDGrid.RowTemplate.Height = 27;
+            this.invoicesDGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.invoicesDGrid.Size = new System.Drawing.Size(776, 184);
             this.invoicesDGrid.TabIndex = 0;
-            this.invoicesDGrid.SelectionChanged += new System.EventHandler(this.invoicesDGrid_SelectionChanged);
             // 
             // InvoiceID
             // 
@@ -117,6 +118,7 @@ namespace Demo_Day8_DB
             this.invoiceDetailsDGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.invoiceDetailsDGrid.Location = new System.Drawing.Point(12, 256);
             this.invoiceDetailsDGrid.Name = "invoiceDetailsDGrid";
+            this.invoiceDetailsDGrid.ReadOnly = true;
             this.invoiceDetailsDGrid.RowTemplate.Height = 27;
             this.invoiceDetailsDGrid.Size = new System.Drawing.Size(776, 182);
             this.invoiceDetailsDGrid.TabIndex = 1;

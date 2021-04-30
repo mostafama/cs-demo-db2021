@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Demo_Data;
 using Demo_Day8_DB.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +41,10 @@ namespace Demo_Day8_DB
                 customerIdCBox.Items.AddRange(cIds);
 
                 DisplayCustomer(); // Display the customer data
+
+                // To learn Extension methods
+                Word w = new Word() { Name = "All Good"};
+                w.GetSeries();
             }
             catch (SqlException sqlException)
             {
