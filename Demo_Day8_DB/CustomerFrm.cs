@@ -33,9 +33,9 @@ namespace Demo_Day8_DB
                 //stateComboBox.Items.AddRange(
                 //    context.States.Select(s=> s.StateName).ToArray());
                 // Loading all states data into the combo-box
-                stateComboBox.DataSource = context.States.ToList();
-                stateComboBox.DisplayMember = "StateName";
-                stateComboBox.ValueMember = "StateCode";
+                stateComboBox.DataSource = context.States.OrderBy(s=> s.StateName).ToList();
+                stateComboBox.DisplayMember = nameof(State.StateName);
+                stateComboBox.ValueMember = nameof(State.StateCode);
                 // Load all customer IDs 
                 Object[] cIds = context.Customers.Select(c => (Object)c.CustomerId).ToArray();
                 customerIdCBox.Items.AddRange(cIds);
@@ -95,7 +95,7 @@ namespace Demo_Day8_DB
         private void nextBtn_Click(object sender, EventArgs e)
         {
             int index = customerIdCBox.SelectedIndex + 1;   // Get the next index of the current customer ID
-            int id = Int32.Parse(customerIdCBox.Items[index].ToString());
+            int id = Convert.ToInt32(customerIdCBox.Items[index]);
             currentCustomer = context.Customers.Find(id);   // Load Customer ID=1
             DisplayCustomer();
         }
@@ -103,7 +103,7 @@ namespace Demo_Day8_DB
         private void backBtn_Click(object sender, EventArgs e)
         {
             int index = customerIdCBox.SelectedIndex - 1;   // Get the prev index of the current customer ID
-            int id = Int32.Parse(customerIdCBox.Items[index].ToString());
+            int id = Convert.ToInt32(customerIdCBox.Items[index]);
             currentCustomer = context.Customers.Find(id);   // Load Customer ID=1
             DisplayCustomer();
         }
@@ -118,6 +118,9 @@ namespace Demo_Day8_DB
                 //currentCustomer.State = stateTxt.Text;
                 currentCustomer.State = stateComboBox.SelectedValue.ToString();
                 currentCustomer.ZipCode = postalTxt.Text;
+
+                //context.Entry(currentCustomer).State      << Modified
+                //context.Entry(currentCustomer).OriginalValues["Name"]      << Get the original value before modification
 
                 context.SaveChanges();
                 DisplayCustomer();
@@ -141,6 +144,18 @@ namespace Demo_Day8_DB
                     this.DisplayCustomer();
                 }
             }
+            catch (DbUpdateException ex)
+            {
+                string errorMessage = "";
+                var sqlException = (SqlException)ex.InnerException;
+                foreach (SqlError error in sqlException.Errors)
+                {
+                    errorMessage += "ERROR CODE:  " + error.Number +
+                                    " " + error.Message + "\n";
+                }
+                MessageBox.Show(errorMessage);
+            }
+
             catch (Exception ex)
             {
                 string errorMessage = "DB error: " + ex.Message + "\n";

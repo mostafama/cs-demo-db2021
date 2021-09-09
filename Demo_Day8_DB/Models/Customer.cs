@@ -23,6 +23,7 @@ namespace Demo_Day8_DB.Models
         public string Name { get; set; }
         [Required]
         [StringLength(50)]
+        [ConcurrencyCheck]      // << To handle Concurrency Check
         public string Address { get; set; }
         [Required]
         [StringLength(20)]
@@ -39,5 +40,7 @@ namespace Demo_Day8_DB.Models
         public virtual State StateNavigation { get; set; }
         [InverseProperty(nameof(Invoice.Customer))]
         public virtual ICollection<Invoice> Invoices { get; set; }
+
+
     }
 }
